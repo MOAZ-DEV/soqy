@@ -4,7 +4,7 @@ import Navbar from "./navbar";
 import Footer from "./footer";
 import LenisProvider from "./lenis-provider";
 
-interface MainLayoutProps extends ComponentProps<'main'> { };
+type MainLayoutProps = ComponentProps<'main'>;
 
 export default function MainLayout({
     className, children, ...props
@@ -12,11 +12,11 @@ export default function MainLayout({
 
     return (
         <main className={cn(
-            "flex flex-col items-center gap-3 min-h-screen w-screen max-w-screen dark text-primary bg-background overflow-x-hdden",
+            "flex flex-col items-center gap-0 min-h-screen w-screen max-w-screen text-primary bg-background",
             className
         )}{...props}>
             <Navbar />
-            <LenisProvider >
+            <LenisProvider>
                 {children}
             </LenisProvider>
             <Footer />

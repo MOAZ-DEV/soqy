@@ -23,8 +23,8 @@ export default function Featured(
     { slides, className, ...props }: FeaturedProps
 ) {
     const
-        RenderItems = () => slides.map(({ id, title, imageSrc, ctaBtns }, idx) => (
-            <CarouselItem>
+        RenderItems = () => slides.map(({ id, title, imageSrc, ctaBtns }) => (
+            <CarouselItem key={id}>
                 <div className="flex h-full w-full overflow-hidden relative">
                     <div className="aspect-square sm:aspect-16/7 flex-1">
                         <img src={imageSrc} alt={title} className="object-cover h-full w-full border bg-foreground/5" />
@@ -38,8 +38,8 @@ export default function Featured(
                 </div>
             </CarouselItem>
         )),
-        RenderBtns = ({ ctaBtns }: { ctaBtns: ctaBtnType[] }) => ctaBtns.map(({ title, url, varient = "default" }) => (
-            <Button variant={varient as any} size="sm" asChild>
+        RenderBtns = ({ ctaBtns }: { ctaBtns: ctaBtnType[] }) => ctaBtns.map(({ title, url, varient = "default" }, idx) => (
+            <Button key={idx} variant={varient} size="sm" asChild>
                 <Link to={url}>{title}</Link>
             </Button>
         ));

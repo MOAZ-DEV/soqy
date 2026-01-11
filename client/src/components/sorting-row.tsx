@@ -6,7 +6,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
-import { ArrowUpDown } from "lucide-react"
+import { ArrowUpDown, X } from "lucide-react"
 import { Route } from "@/routes/index"
 import { useState } from "react"
 import { Input } from "./ui/input"
@@ -40,6 +40,8 @@ export default function SortingRow() {
             search: (prev) => ({
                 ...prev,
                 sort: value,
+                after: undefined,
+                before: undefined
             }),
         })
 
@@ -49,19 +51,32 @@ export default function SortingRow() {
             search: (prev) => ({
                 ...prev,
                 query: e.target.value || undefined,
+                after: undefined,
+                before: undefined
             }),
         })
     }
 
     return (
         <div className="flex flex-row gap-2 max-w-445 items-center justify-between w-full mx-auto px-3 py-1 sticky top-16 sm:top-18 z-30">
-            <Input
-                type="text"
-                placeholder="Search products..."
-                value={searchTerm}
-                onChange={handleSearchChange}
-                className="flex-1 w-full sm:max-w-64 outline-0 backdrop-blur-sm"
-            />
+            <div className="flex flex-row gap-2 items-center">
+                <Input
+                    type="text"
+                    placeholder="Search products..."
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                    className="flex-1 w-full sm:max-w-64 outline-0 backdrop-blur-sm"
+                />
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    hidden={searchTerm === ""}
+                    onClick={() =>
+                        handleSearchChange({ target: { value: "" } } as React.ChangeEvent<HTMLInputElement>)
+                    }>
+                    <X />
+                </Button>
+            </div>
 
             <div className="flex flex-row items-center justify-end gap-2 *:backdrop-blur-sm">
                 <Button

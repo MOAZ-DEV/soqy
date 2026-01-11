@@ -112,9 +112,26 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50 font-mono!;
+    @apply border-border outline-ring/50 font-mono antialiased;
   }
+
   body {
-    @apply h-screen w-screen max-w-screen overflow-x-hidden bg-background text-primary font-thin;
+    @apply w-screen max-w-screen overflow-hidden bg-background text-primary font-thin;
   }
+}
+
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted/50 hover:bg-muted/70 rounded;
+}
+
+::-webkit-scrollbar-corner {
+  @apply bg-transparent;
 }

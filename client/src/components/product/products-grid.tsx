@@ -1,17 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cn } from "@/lib/utils";
+import ProductCard from "./product-card";
 import { ComponentProps } from "react";
-import ProductCard, { ProductType } from "./product-card";
-
-interface ProductsGridProps extends ComponentProps<'div'> {
-    products: ProductType[];
-}
+import { PageInfo, Product } from "@/types/shopify";
+import PaginationRow from "@/components/pagination-row";
 
 export default function ProductsGrid(
-    { products, className, ...props }: ProductsGridProps
+    { products, pageInfo, cursors, className, ...props }: ComponentProps<'div'> & { products: Product[]; pageInfo: PageInfo; cursors: any }
 ) {
-    const RenderProductsItems = () => products.map((data, idx) =>
-        <ProductCard key={idx} {...{ product: data }} />
-    )
+    const RenderProductsItems = () =>
+        products?.map((p: Product) => <ProductCard key={p.id ?? p.handle ?? Math.random()} product={p} />)
 
     return (
         <div className={cn(
@@ -19,6 +17,16 @@ export default function ProductsGrid(
             className
         )} {...props}>
             <RenderProductsItems />
+            {pageInfo && (
+                <div className="col-span-full w-full mt-4">
+                    <PaginationRow
+                        hasNextPage={pageInfo?.hasNextPage}
+                        hasPreviousPage={pageInfo?.hasPreviousPage}
+                        endCursor={cursors?.endCursor}
+                        startCursor={cursors?.startCursor}
+                    />
+                </div>
+            )}
         </div>
     )
 }

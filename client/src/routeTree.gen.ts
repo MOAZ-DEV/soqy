@@ -12,6 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProductsIndexRouteImport } from './routes/products/index'
+import { Route as CollectionsIndexRouteImport } from './routes/collections/index'
+import { Route as ProductsHandleRouteImport } from './routes/products/$handle'
+import { Route as CollectionsHandleRouteImport } from './routes/collections/$handle'
 
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
@@ -28,35 +32,93 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionsIndexRoute = CollectionsIndexRouteImport.update({
+  id: '/collections/',
+  path: '/collections/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsHandleRoute = ProductsHandleRouteImport.update({
+  id: '/products/$handle',
+  path: '/products/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionsHandleRoute = CollectionsHandleRouteImport.update({
+  id: '/collections/$handle',
+  path: '/collections/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/search': typeof SearchRoute
+  '/collections/$handle': typeof CollectionsHandleRoute
+  '/products/$handle': typeof ProductsHandleRoute
+  '/collections': typeof CollectionsIndexRoute
+  '/products': typeof ProductsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/search': typeof SearchRoute
+  '/collections/$handle': typeof CollectionsHandleRoute
+  '/products/$handle': typeof ProductsHandleRoute
+  '/collections': typeof CollectionsIndexRoute
+  '/products': typeof ProductsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/search': typeof SearchRoute
+  '/collections/$handle': typeof CollectionsHandleRoute
+  '/products/$handle': typeof ProductsHandleRoute
+  '/collections/': typeof CollectionsIndexRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/search'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/search'
+    | '/collections/$handle'
+    | '/products/$handle'
+    | '/collections'
+    | '/products'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/search'
-  id: '__root__' | '/' | '/login' | '/search'
+  to:
+    | '/'
+    | '/login'
+    | '/search'
+    | '/collections/$handle'
+    | '/products/$handle'
+    | '/collections'
+    | '/products'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/search'
+    | '/collections/$handle'
+    | '/products/$handle'
+    | '/collections/'
+    | '/products/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
   SearchRoute: typeof SearchRoute
+  CollectionsHandleRoute: typeof CollectionsHandleRoute
+  ProductsHandleRoute: typeof ProductsHandleRoute
+  CollectionsIndexRoute: typeof CollectionsIndexRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +144,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collections/': {
+      id: '/collections/'
+      path: '/collections'
+      fullPath: '/collections'
+      preLoaderRoute: typeof CollectionsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/$handle': {
+      id: '/products/$handle'
+      path: '/products/$handle'
+      fullPath: '/products/$handle'
+      preLoaderRoute: typeof ProductsHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collections/$handle': {
+      id: '/collections/$handle'
+      path: '/collections/$handle'
+      fullPath: '/collections/$handle'
+      preLoaderRoute: typeof CollectionsHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +179,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
   SearchRoute: SearchRoute,
+  CollectionsHandleRoute: CollectionsHandleRoute,
+  ProductsHandleRoute: ProductsHandleRoute,
+  CollectionsIndexRoute: CollectionsIndexRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
