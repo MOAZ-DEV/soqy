@@ -1,8 +1,8 @@
+import useLocalSessions from "@/lib/local-sessions";
 import { Cart } from "@/types/shopify";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const API_BASE_URL = "http://localhost:3000";
-const CART_KEY = "cart_id";
 
 const QUERY_KEYS = {
   CART: ["cart"] as const,
@@ -10,19 +10,16 @@ const QUERY_KEYS = {
 
 let cachedCartId: string | null = null;
 
-const getCartId = () => {
-  if (cachedCartId) return cachedCartId;
-  if (typeof window === "undefined") return null;
-  cachedCartId = localStorage.getItem(CART_KEY);
-  return cachedCartId;
-};
+const
+  getCartId = () => {
+    cachedCartId = useLocalSessions()?.get({ key: "cart_id" }) || null;
+    return cachedCartId
+  },
+  setCartId = (id: string) => {
+    useLocalSessions()?.get({ key: "cart_id" }) || null;
+    cachedCartId = id;
+  };
 
-const setCartId = (id: string) => {
-  cachedCartId = id;
-  localStorage.setItem(CART_KEY, id);
-};
-
-/* ================= API ================= */
 
 const fetchCart = async (): Promise<Cart | null> => {
   const cartId = getCartId();
