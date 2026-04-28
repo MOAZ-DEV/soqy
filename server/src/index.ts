@@ -8,8 +8,8 @@ const shopifyAPI = new ShopifyAPI({
   storefrontAccessToken: "c740a7b2bd4a386d890b49260451b4be",
 });
 
-export const app = new Hono()
-
+const app = new Hono()
+  .basePath("/api")
   .use(cors())
 
   .get("/", (c) => {

@@ -8,4 +8,4 @@ To run:
 bun run dev
 ```
 
-open http://localhost:3000
+open https://soqy.moaz-dev.workers.dev/api

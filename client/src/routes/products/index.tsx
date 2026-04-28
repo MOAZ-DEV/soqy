@@ -2,7 +2,7 @@ import MainLayout from "@/components/main-layout";
 import ProductsGrid from "@/components/product/products-grid";
 import SortingRow from "@/components/sorting-row";
 import { useProducts } from "@/hooks/use-product";
-import { useQuery } from "@tanstack/react-query";
+import { ProductSortKeys } from "@/types/shopify";
 import { createFileRoute } from "@tanstack/react-router";
 import z from "zod";
 
@@ -28,17 +28,17 @@ export const Route = createFileRoute("/products/")({
 
 function Index() {
 	const { sort, query, after, before } = Route.useSearch();
-	const { } = useProducts({
+	const { data } = useProducts({
 		after,
 		before,
-		sortKey: sort,
+		sortKey: sort as ProductSortKeys,
 		query
 	})
 
 	return (
 		<MainLayout>
 			<SortingRow />
-			<ProductsGrid  {...data} />
+			<ProductsGrid  {...data!} />
 		</MainLayout>
 	)
 }

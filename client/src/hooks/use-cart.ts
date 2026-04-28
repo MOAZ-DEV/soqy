@@ -2,7 +2,7 @@ import useLocalSessions from "@/lib/local-sessions";
 import { Cart } from "@/types/shopify";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://soqy.moaz-dev.workers.dev/api";
 
 const QUERY_KEYS = {
   CART: ["cart"] as const,

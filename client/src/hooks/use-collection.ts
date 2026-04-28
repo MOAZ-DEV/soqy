@@ -16,7 +16,7 @@ interface CollectionProductsResponse {
   error?: string;
 }
 
-const API_URL = "http://localhost:3000";
+const API_URL = "https://soqy.moaz-dev.workers.dev/api";
 
 export function useCollections() {
   return useQuery<CollectionsResponse>({

@@ -34,7 +34,7 @@ function Index() {
 	// 		const params = new URLSearchParams();
 	// 		if (sort) params.set("sort", encodeURIComponent(sort));
 	// 		if (query) params.set("query", encodeURIComponent(query));
-	// 		const response = await fetch(`http://localhost:3000/collection/${}/products/?${params.toString()}`);
+	// 		const response = await fetch(`https://soqy.moaz-dev.workers.dev/api/collection/${}/products/?${params.toString()}`);
 	// 		console.log('Fetching products with params:', params.toString());
 	// 		if (!response.ok) throw new Error("Failed to fetch products");
 	// 		return await response.json();

@@ -5,7 +5,7 @@ type optionsType = {
     body?: {} | null
 }
 
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://soqy.moaz-dev.workers.dev/api";
 
 export default async function useFetch(
     url: string,

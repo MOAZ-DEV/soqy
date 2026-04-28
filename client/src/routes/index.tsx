@@ -37,7 +37,7 @@ function Index() {
 	const { data } = useQuery({
 		queryKey: ["products", { sort, query, after, before }],
 		queryFn: async () => {
-			const response = await fetch(`http://localhost:3000/products?${params.toString()}`);
+			const response = await fetch(`https://soqy.moaz-dev.workers.dev/api/products?${params.toString()}`);
 			return await response.json();
 		}
 	});

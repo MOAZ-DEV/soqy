@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import type { FilterParams, PageInfo, PaginationParams, Product, SortParams } from '@/types/shopify';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://soqy.moaz-dev.workers.dev/api';
 
 const QUERY_KEYS = {
   PRODUCT: (handle?: string) => ['product', handle] as const,
