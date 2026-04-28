@@ -8,7 +8,6 @@ import {
 import { cn } from "@/lib/utils";
 import { Route } from "@/routes";
 
-
 interface PaginationRowProps extends React.ComponentProps<"div"> {
   hasNextPage?: boolean;
   hasPreviousPage?: boolean;
@@ -16,7 +15,12 @@ interface PaginationRowProps extends React.ComponentProps<"div"> {
   startCursor?: string | null;
 }
 
-export default function PaginationRow({ hasNextPage, hasPreviousPage, endCursor, startCursor }: PaginationRowProps) {
+export default function PaginationRow({
+  hasNextPage,
+  hasPreviousPage,
+  endCursor,
+  startCursor,
+}: PaginationRowProps) {
   const navigate = Route.useNavigate();
 
   return (
@@ -25,13 +29,21 @@ export default function PaginationRow({ hasNextPage, hasPreviousPage, endCursor,
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious
-              className={cn({ "opacity-45 pointer-events-none": !hasPreviousPage })}
+              className={cn({
+                "opacity-45 pointer-events-none": !hasPreviousPage,
+              })}
               onClick={(e) => {
                 e.preventDefault();
                 navigate({
-                  search: (prev) => ({...prev, before: startCursor ?? undefined, after: undefined })
+                  to: ".", // stays on the same route
+                  search: (prev) => ({
+                    ...prev,
+                    before: startCursor ?? undefined,
+                    after: undefined,
+                  }),
                 });
-              }} />
+              }}
+            />
           </PaginationItem>
 
           {/* <PaginationItem>
@@ -44,9 +56,15 @@ export default function PaginationRow({ hasNextPage, hasPreviousPage, endCursor,
               onClick={(e) => {
                 e.preventDefault();
                 navigate({
-                  search: (prev) => ({...prev, after: endCursor ?? undefined, before: undefined })
+                  to: ".", // stays on the same route
+                  search: (prev) => ({
+                    ...prev,
+                    after: endCursor ?? undefined,
+                    before: undefined,
+                  }),
                 });
-              }} />
+              }}
+            />
           </PaginationItem>
         </PaginationContent>
       </Pagination>

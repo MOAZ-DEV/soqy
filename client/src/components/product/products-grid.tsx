@@ -6,7 +6,7 @@ import { PageInfo, Product } from "@/types/shopify";
 import PaginationRow from "@/components/pagination-row";
 
 export default function ProductsGrid(
-    { products, pageInfo, cursors, className, ...props }: ComponentProps<'div'> & { products: Product[]; pageInfo: PageInfo; cursors: any }
+    { products, pageInfo, cursors, className, ...props }: ComponentProps<'div'> & { products: Product[]; pageInfo?: PageInfo; cursors?: any }
 ) {
     const RenderProductsItems = () =>
         products?.map((p: Product) => <ProductCard key={p.id ?? p.handle ?? Math.random()} product={p} />)
@@ -17,7 +17,7 @@ export default function ProductsGrid(
             className
         )} {...props}>
             <RenderProductsItems />
-            {pageInfo && (
+            {(pageInfo && cursors) && (
                 <div className="col-span-full w-full mt-4">
                     <PaginationRow
                         hasNextPage={pageInfo?.hasNextPage}

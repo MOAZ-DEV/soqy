@@ -2,7 +2,6 @@ import Featured from "@/components/featured";
 import MainLayout from "@/components/main-layout";
 import ProductsGrid from "@/components/product/products-grid";
 import SortingRow from "@/components/sorting-row";
-import useFetch from "@/lib/use-fetch";
 import { DUMMY_FEATURED } from "@/shared/dummy-featured";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
@@ -37,7 +36,10 @@ function Index() {
 
 	const { data } = useQuery({
 		queryKey: ["products", { sort, query, after, before }],
-		queryFn: () => useFetch(`http://localhost:3000/products?${params.toString()}`)
+		queryFn: async () => {
+			const response = await fetch(`http://localhost:3000/products?${params.toString()}`);
+			return await response.json();
+		}
 	});
 
 	return (

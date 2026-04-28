@@ -25,12 +25,13 @@ export default function Featured(
     const
         RenderItems = () => slides.map(({ id, title, imageSrc, ctaBtns }) => (
             <CarouselItem key={id}>
-                <div className="flex h-full w-full overflow-hidden relative">
-                    <div className="aspect-square sm:aspect-16/7 flex-1">
+                <div className="flex h-full w-full overflow-hidden relative group">
+                    <div className="aspect-square sm:aspect-16/7 flex-1 relative">
                         <img src={imageSrc} alt={title} className="object-cover h-full w-full border bg-foreground/5" />
+                        <span className="absolute bottom-0 left-0 h-full w-full bg-gradient-to-t bg-black/12 from-background/45 to-background/0 group-hover:backdrop-blur-none backdrop-blur-md transition duration-700"></span>
                     </div>
                     <div className="flex flex-col sm:items-center justify-end sm:justify-center gap-3 sm:gap-6 absolute bottom-0 left-0 h-full w-full p-4">
-                        <h2 className="text-4xl sm:text-6xl sm:text-center">{title}</h2>
+                        <h2 className="text-4xl sm:text-6xl sm:text-center text-white font-semibold">{title}</h2>
                         <div className="flex flex-row items-center gap-2">
                             <RenderBtns {...{ ctaBtns }} />
                         </div>
