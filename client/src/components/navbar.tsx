@@ -16,7 +16,7 @@ export default function Navbar({ className, ...props }: NavbarProps) {
   return (
     <nav
       className={cn(
-        "flex flex-col items-center max-h-15 w-full border-b p-3 sticky top-0 bg-background/24 backdrop-blur-sm z-50 overflow-hidden transition-all duration-300",
+        "flex flex-col items-center min-h-15 max-h-15 w-full border-b p-3 sticky top-0 bg-background/24 backdrop-blur-sm z-50 overflow-hidden transition-all duration-300",
         menuOpen && "max-h-96",
         className
       )}

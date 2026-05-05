@@ -120,6 +120,10 @@
   }
 }
 
+html, body {
+  @apply h-screen w-screen overflow-hidden outline-0 border-0;
+}
+
 ::-webkit-scrollbar {
   @apply w-2;
 }
