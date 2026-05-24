@@ -58,14 +58,14 @@ export default function SortingRow() {
     }
 
     return (
-        <div className="flex flex-row gap-2 max-w-445 items-center justify-between w-full mx-auto px-3 py-1 sticky top-16 sm:top-18 z-30">
+        <div className="flex flex-row gap-2 max-w-445 items-center justify-between w-full mx-auto px-3 py-1 sticky top-2 sm:top-2 z-30">
             <div className="flex flex-row gap-2 items-center">
                 <Input
                     type="text"
                     placeholder="Search products..."
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    className="flex-1 w-full sm:max-w-64 outline-0 backdrop-blur-sm"
+                    className="flex-1 w-full sm:max-w-64 outline-0 backdrop-blur-sm bg-background/45"
                 />
                 <Button
                     variant="ghost"
@@ -84,13 +84,13 @@ export default function SortingRow() {
                     size="icon"
                     onClick={toggleReverse}
                     disabled={sort === "best-selling" || sort === "featured"}
-                    className="max-sm:hidden"
+                    className="max-sm:hidden bg-background/45 border"
                 >
                     <ArrowUpDown className="h-4 w-4" />
                 </Button>
 
                 <Select value={sort ?? "featured"} onValueChange={setSort}>
-                    <SelectTrigger className="w-140px">
+                    <SelectTrigger className="w-140px bg-background/45">
                         <SelectValue />
                     </SelectTrigger>
 

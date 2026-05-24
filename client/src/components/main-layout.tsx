@@ -14,7 +14,7 @@ export default function MainLayout({
       <div className="">
         <main
           className={cn(
-            "flex flex-col items-center gap-0 h-screen w-screen overflow-y-auto overflow-x-hidden text-primary bg-background",
+            "flex flex-col items-center gap-0 h-screen w-screen overflow-y-auto overflow-x-hidden text-primary bg-background pt-15",
             className,
           )}
           {...props}
