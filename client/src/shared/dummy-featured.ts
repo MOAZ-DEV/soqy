@@ -7,7 +7,7 @@ export const DUMMY_FEATURED: slidesType[] = [
         imageSrc: "/images/featured/clay-banks-HVZCsMB3rc4-unsplash(1).jpg",
         ctaBtns: [
             { title: "Shop Now", url: "/collection/winter" },
-            { title: "View Lookbook", url: "/lookbook/winter", varient: "outline" }
+            { title: "View Lookbook", url: "/lookbook/pants-jeans", varient: "outline" }
         ]
     },
     {
@@ -15,7 +15,7 @@ export const DUMMY_FEATURED: slidesType[] = [
         title: "Streetwear Drop",
         imageSrc: "/images/featured/kevin-dolan-1rFIUPAfNbk-unsplash.jpg",
         ctaBtns: [
-            { title: "Explore", url: "/collection/streetwear" }
+            { title: "Explore", url: "/collection/pants-jeans" }
         ]
     },
     {
@@ -23,8 +23,8 @@ export const DUMMY_FEATURED: slidesType[] = [
         title: "Best Sellers",
         imageSrc: "/images/featured/leoon-liang-ffHd5sB6338-unsplash.jpg",
         ctaBtns: [
-            { title: "View Products", url: "/best-sellers" },
-            { title: "All Products", url: "/products", varient: "secondary" }
+            { title: "View Products", url: "/collection/pants-jeans" },
+            { title: "All Products", url: "/collection/pants-jeans", varient: "secondary" }
         ]
     }
 ];
